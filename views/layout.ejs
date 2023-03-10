@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html data-theme="winter">
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    </head>
+    <body class="h-screen grid grid-rows-6 items-center justify-center">
+        <header class="prose row-span-1">
+            <h1>Hello in Members-only app!</h1>
+            <a href="/sign-up">Log in</a>
+        </header>
+        <main class="prose row-span-4">
+            <p>User posts</p>
+            <%- include('main.ejs') %>
+        </main>
+        <footer class="prose row-span-1">
+            <p>Footer section</p>
+        </footer>
+    </body>
+</html>

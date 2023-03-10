@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    </head>
+    <body class="h-screen flex flex-col gap-4 items-center justify-center">
+        <div class="form-control w-full max-w-xs gap-8 py-8 bg-neutral">
+            <div>
+                <label class="label">
+                    <span class="label-text">Username</span>
+                </label>
+                <input
+                    type="text"
+                    placeholder="Type here"
+                    class="input input-bordered w-full max-w-xs rounded-md"
+                    name="username"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text">Password</span>
+                </label>
+                <input
+                    type="password"
+                    name="password1"
+                    placeholder="Type your password"
+                    class="input input-bordered w-full max-w-xs rounded-md"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text">Confirm password</span>
+                </label>
+                <input
+                    type="password"
+                    name="password2"
+                    placeholder="Confirm password"
+                    class="input input-bordered w-full max-w-xs rounded-md"
+                />
+            </div>
+            <button class="btn btn-primary" type="submit">Sign up</button>
+            <div>
+                <p>Already have an account?</p>
+                - <a href="/sign-in" class="link">Sign in</a>
+            </div>
+        </div>
+    </body>
+</html>
