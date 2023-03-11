@@ -13,14 +13,18 @@
     <body class="h-screen grid grid-rows-6 items-center justify-center">
         <header class="prose row-span-1">
             <h1>Hello in Members-only app!</h1>
-            <a href="/sign-up">Log in</a>
+            <a href="/sign-up">Sign up</a>
         </header>
         <main class="prose row-span-4">
             <p>User posts</p>
-            <%- include('main.ejs') %>
         </main>
         <footer class="prose row-span-1">
             <p>Footer section</p>
+            <% if (user) { %>
+            <h1>Logged in!</h1>
+            <% } else { %>
+            <h1>No users found</h1>
+            <%}%>
         </footer>
     </body>
 </html>

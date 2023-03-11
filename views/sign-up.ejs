@@ -11,7 +11,11 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     </head>
     <body class="h-screen flex flex-col gap-4 items-center justify-center">
-        <div class="form-control w-full max-w-xs gap-8 py-8 bg-neutral">
+        <form
+            class="form-control w-full max-w-xs gap-8 py-8 bg-neutral"
+            action=""
+            method="POST"
+        >
             <div>
                 <label class="label">
                     <span class="label-text">Username</span>
@@ -29,7 +33,7 @@
                 </label>
                 <input
                     type="password"
-                    name="password1"
+                    name="password"
                     placeholder="Type your password"
                     class="input input-bordered w-full max-w-xs rounded-md"
                 />
@@ -50,6 +54,6 @@
                 <p>Already have an account?</p>
                 - <a href="/sign-in" class="link">Sign in</a>
             </div>
-        </div>
+        </form>
     </body>
 </html>
