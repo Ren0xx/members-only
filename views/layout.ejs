@@ -16,19 +16,24 @@
             <form action="/log-out">
                 <button type="submit" class="btn btn-sm">Log out</button>
             </form>
-
+            <a href="/create-message" class="link">Create Message</a>
             <% } else { %>
             <a href="/sign-up">Sign up</a>/
             <a href="/sign-in">Sign in</a>
             <%}%>
         </header>
         <main class="prose row-span-4">
-            <p>User posts</p>
+            <h1>User posts</h1>
+            <% if (messages) { %> <% messages.forEach(function(message) { %>
+            <li><%= message.title %> - <%= message.content %></li>
+            <% }); %> <% } else { %>
+            <p>No messages yet</p>
+            <%}%>
         </main>
         <footer class="prose row-span-1">
             <p>Footer section</p>
             <% if (user) { %>
-            <h1>Logged in as <%= user.username %> !</h1>
+            <h1>Logged in as <%= user.username %> <%= user.status %>!</h1>
             <% } else { %>
             <h1>No users found</h1>
             <%}%>

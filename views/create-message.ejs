@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-theme="winter">
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
+            rel="stylesheet"
+            type="text/css" />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    </head>
+    <body class="flex flex-row gap-4 items-center justify-center h-screen">
+        <form
+            class="form-control w-full max-w-xs gap-8 px-8 py-8 border-2 border-primary"
+            action=""
+            method="POST">
+            <label class="label my-4">
+                <span class="label-text">Message title</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Title"
+                class="input w-full max-w-xs"
+                name="title" />
+            <label class="label my-4">
+                <span class="label-text">Message content</span>
+            </label>
+            <textarea
+                name="content"
+                class="textarea textarea-bordered"
+                placeholder="Type your message"></textarea>
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </body>
+</html>

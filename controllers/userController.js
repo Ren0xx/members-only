@@ -16,8 +16,9 @@ exports.user_logout_get = (req, res, next) => {
 };
 
 // sign-in route - get
-exports.user_login_get = (req, res) => {
+exports.user_signin_get = (req, res) => {
     if (req.user) res.redirect("/");
+    console.log(req.session.messages);
     res.render("sign-in", { title: "Sign in" });
 };
 
@@ -67,7 +68,7 @@ passport.use(
             });
     })
 );
-exports.user_login_post = passport.authenticate("local", {
+exports.user_signin_post = passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/sign-in",
 });
