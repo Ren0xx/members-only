@@ -1,4 +1,7 @@
 const Message = require("../models/message");
+const User = require("../models/user");
+const async = require("async");
+
 exports.create_message_get = (req, res, next) => {
     if (!req.user) res.redirect("/");
     res.render("create-message", { title: "Create Message" });
@@ -19,9 +22,9 @@ exports.create_message_post = (req, res, next) => {
         .catch((err) => next(err));
 };
 exports.index_get = (req, res, next) => {
-    Message.find()
-        .sort([["timestamp", "ascending"]])
-        .limit(25)
+    Message.find({})
+        .sort({ title: 1 })
+        .populate("owner")
         .then((messages) => {
             res.render("layout", {
                 title: "Members only",
@@ -29,5 +32,13 @@ exports.index_get = (req, res, next) => {
                 messages: messages,
             });
         })
+        .catch((err) => next(err));
+};
+exports.delete_message_post = (req, res, next) => {
+    const messageId = req.body.message_id;
+    const ownerId = req.body.message_owner;
+    if (!req.user || req.user._id !== ownerId) res.redirect("/");
+    Message.findByIdAndRemove(messageId)
+        .then(() => res.redirect("/"))
         .catch((err) => next(err));
 };

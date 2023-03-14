@@ -22,4 +22,6 @@ router.post("/sign-in", userController.user_signin_post);
 
 router.get("/create-message", messageController.create_message_get);
 router.post("/create-message", messageController.create_message_post);
+
+router.post("/delete-message", messageController.delete_message_post);
 module.exports = router;
