@@ -6,16 +6,14 @@
         <link
             href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
             rel="stylesheet"
-            type="text/css"
-        />
+            type="text/css" />
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     </head>
     <body class="h-screen flex flex-col gap-4 items-center justify-center">
         <form
             class="form-control w-full max-w-xs gap-8 py-8 bg-neutral"
             action=""
-            method="POST"
-        >
+            method="POST">
             <div>
                 <label class="label">
                     <span class="label-text">Username</span>
@@ -24,8 +22,7 @@
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full max-w-xs rounded-md"
-                    name="username"
-                />
+                    name="username" />
             </div>
             <div>
                 <label class="label">
@@ -35,8 +32,7 @@
                     type="password"
                     name="password"
                     placeholder="Type your password"
-                    class="input input-bordered w-full max-w-xs rounded-md"
-                />
+                    class="input input-bordered w-full max-w-xs rounded-md" />
             </div>
             <div>
                 <label class="label">
@@ -44,11 +40,17 @@
                 </label>
                 <input
                     type="password"
-                    name="password2"
+                    name="confirmPassword"
                     placeholder="Confirm password"
-                    class="input input-bordered w-full max-w-xs rounded-md"
-                />
+                    class="input input-bordered w-full max-w-xs rounded-md" />
             </div>
+            <% if (errors.length > 0) { %>
+            <ul class="text-error">
+                <% errors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+                <% }); %>
+            </ul>
+            <% } %>
             <button class="btn btn-primary" type="submit">Sign up</button>
             <div>
                 <p>Already have an account?</p>
