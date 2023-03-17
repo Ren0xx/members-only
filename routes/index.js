@@ -1,16 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const bcrypt = require("bcryptjs");
-const User = require("../models/user");
-const Message = require("../models/message");
 const messageController = require("../controllers/messageController");
 const userController = require("../controllers/userController");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 
 /* GET home page. */
-const app = express();
-const messages = Message.find();
 router.get("/", messageController.index_get);
 
 router.get("/sign-up", userController.user_create_get);
@@ -24,4 +17,7 @@ router.get("/create-message", messageController.create_message_get);
 router.post("/create-message", messageController.create_message_post);
 
 router.post("/delete-message", messageController.delete_message_post);
+
+router.get("/become-admin", userController.become_admin_get);
+router.post("/become-admin", userController.become_admin_post);
 module.exports = router;

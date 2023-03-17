@@ -57,8 +57,11 @@ exports.index_get = (req, res, next) => {
 exports.delete_message_post = (req, res, next) => {
     const messageId = req.body.message_id;
     const ownerId = req.body.message_owner;
-    if (!req.user || req.user._id !== ownerId) res.redirect("/");
-    Message.findByIdAndRemove(messageId)
-        .then(() => res.redirect("/"))
-        .catch((err) => next(err));
+    if ((req.user && req.user._id === ownerId) || req.user.status === "ADMIN") {
+        Message.findByIdAndRemove(messageId)
+            .then(() => res.redirect("/"))
+            .catch((err) => next(err));
+        return;
+    }
+    res.redirect("/");
 };

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-theme="winter">
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
+            rel="stylesheet"
+            type="text/css" />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    </head>
+    <body class="flex flex-row gap-4 items-center justify-center h-screen">
+        <form
+            class="form-control w-full max-w-xs gap-8 px-8 py-8 border-2 border-primary"
+            action=""
+            method="POST">
+            <label class="label my-4">
+                <span class="label-text">Secret code</span>
+            </label>
+            <input
+                type="password"
+                placeholder="Secret Code"
+                class="input w-full max-w-xs"
+                name="secretcode" />
+            <% if (errors.length > 0) { %>
+            <ul class="text-error">
+                <% errors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+                <% }); %>
+            </ul>
+            <% } %>
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </body>
+</html>

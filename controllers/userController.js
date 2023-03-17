@@ -19,7 +19,6 @@ exports.user_logout_get = (req, res, next) => {
 // sign-in route - get
 exports.user_signin_get = (req, res) => {
     if (req.user) res.redirect("/");
-    console.log(req.session.messages);
     res.render("sign-in", { title: "Sign in" });
 };
 
@@ -113,3 +112,43 @@ passport.deserializeUser(async function (id, done) {
         done(err, null);
     }
 });
+
+exports.become_admin_get = (req, res, next) => {
+    if (!req.user) res.redirect("/sign-up");
+    console.log(req.user._id.toString());
+
+    res.render("become-admin", { title: "Become an Admin", errors: [] });
+};
+exports.become_admin_post = [
+    body("secretcode", "Code must not be empty")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            res.render("become-admin", {
+                title: "Become an Admin",
+                errors: errors,
+            });
+            return;
+        }
+        const user_code = req.body.secretcode;
+        if (user_code === process.env.SECRET_ADMIN_CODE) {
+            errors.errors.push({ msg: "Wrong!" });
+            res.render("become-admin", {
+                title: "Become admin",
+                errors: errors.array(),
+            });
+            return;
+        }
+        const user_id = req.user._id;
+        User.findByIdAndUpdate({ _id: user_id }, { status: "ADMIN" })
+            .then(() => {
+                res.redirect("/");
+            })
+            .catch((err) => {
+                return next(err);
+            });
+    },
+];

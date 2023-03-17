@@ -17,15 +17,16 @@
             <h5>Logged in as <%= user.username %> <%= user.status %>!</h5>
             <% } else { %>
             <h5 class="text-teal-200">Not logged in</h5>
+            <a href="/sign-up">Sign up</a>/
+            <a href="/sign-in">Sign in</a>
             <%}%> <% if (user) { %>
             <form action="/log-out">
                 <button type="submit" class="btn btn-sm">Log out</button>
             </form>
             <a href="/create-message" class="link">Create Message</a>
-            <% } else { %>
-            <a href="/sign-up">Sign up</a>/
-            <a href="/sign-in">Sign in</a>
-            <%}%>
+            <% if ( user.status !== "ADMIN" ) { %>
+            <a href="/become-admin">Become an Admin!</a>
+            <% } { %> <% } %> <%}%>
         </header>
         <main class="col-span-4 mt-16">
             <h1>User posts</h1>
@@ -43,7 +44,8 @@
                         <% if (user) { %>
                         <p><%= message.owner.username %></p>
                         <p><%= message.date_formatted %></p>
-                        <% if (user._id == message.owner._id.toString()) { %>
+                        <% if (user._id == message.owner._id.toString() ||
+                        user.status === "ADMIN") { %>
                         <input
                             type="hidden"
                             name="message_id"
