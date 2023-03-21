@@ -11,27 +11,42 @@
     </head>
     <body
         class="container mx-8 h-screen grid grid-cols-6 justify-center gap-8 px-8">
-        <header class="col-span-2 mt-16">
-            <h1 class="text-2xl font-semibold">Hello in Members-only app!</h1>
+        <header class="prose col-span-2 mt-16">
+            <h1 class="font-semibold">Hello in <i>Members-only </i>app!</h1>
+            <p>
+                If you are not logged in you can only see the messages, but not
+                the authors and when messages were added. <br />
+            </p>
             <% if (user) { %>
-            <h5>Logged in as <%= user.username %> <%= user.status %>!</h5>
+            <h3 class="py-4">
+                Logged in as <i><%= user.username %> </i> <br />
+                Your current status is
+                <p class="underline underline-offset-4 inline">
+                    <%= user.status %>
+                </p>
+            </h3>
             <% } else { %>
-            <h5 class="text-teal-200">Not logged in</h5>
-            <a href="/sign-up">Sign up</a>/
-            <a href="/sign-in">Sign in</a>
+            <h3 class="">Not logged in</h3>
+            <a href="/sign-up" class="link text-lg">Sign up</a> /
+            <a href="/sign-in" class="link text-lg">Sign in</a>
             <%}%> <% if (user) { %>
-            <form action="/log-out">
-                <button type="submit" class="btn btn-sm">Log out</button>
+            <form action="/log-out" class="fixed bottom-8 left-8">
+                <button type="submit" class="btn btn-sm bg-blue-600">
+                    Log out
+                </button>
             </form>
-            <a href="/create-message" class="link">Create Message</a>
+            <a href="/create-message" class="link text-lg">Create Message</a>
+            <br />
             <% if ( user.status !== "ADMIN" ) { %>
-            <a href="/become-admin">Become an Admin!</a>
+            <a href="/become-admin" class="link text-green-500 text-lg my-8"
+                >Become an Admin!</a
+            >
             <% } { %> <% } %> <%}%>
         </header>
-        <main class="col-span-4 mt-16">
-            <h1>User posts</h1>
+        <main class="prose col-span-4 m-16 flex flex-col gap-4 items-center">
+            <h2>All messages from users:</h2>
             <% if (messages) { %>
-            <div class="flex flex-col gap-4 border-4">
+            <div class="flex flex-col gap-4">
                 <% messages.forEach(function(message) { %>
 
                 <div class="card w-96 bg-base-100 shadow-xl">
@@ -40,10 +55,14 @@
                         action="/delete-message"
                         method="post">
                         <h2 class="card-title"><%= message.title %></h2>
-                        <p><%= message.content %></p>
+                        <div class="flex flex-row gap-x-4">
+                            <p><%= message.content %></p>
+                        </div>
                         <% if (user) { %>
-                        <p><%= message.owner.username %></p>
-                        <p><%= message.date_formatted %></p>
+                        <div class="flex flex-row gap-x-4">
+                            <p><b>Author: </b><%= message.owner.username %></p>
+                            <p><b>Added: </b> <%= message.date_formatted %></p>
+                        </div>
                         <% if (user._id == message.owner._id.toString() ||
                         user.status === "ADMIN") { %>
                         <input
@@ -65,7 +84,7 @@
                 <% }); %>
             </div>
             <% } else { %>
-            <p>No messages yet</p>
+            <p>There are no messages yet</p>
             <%}%>
         </main>
     </body>

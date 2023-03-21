@@ -9,19 +9,22 @@
             type="text/css" />
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     </head>
-    <body class="flex flex-row gap-4 items-center justify-center h-screen">
+    <body class="flex flex-col gap-4 items-center justify-center h-screen">
+        <a href="/" class="absolute top-8 left-8 link">Go back</a>
         <form
-            class="form-control w-full max-w-xs gap-8 px-8 py-8 border-2 border-primary"
+            class="form-control w-full max-w-xs gap-8 px-8 py-8"
             action=""
             method="POST">
-            <label class="label my-4">
-                <span class="label-text">Secret code</span>
-            </label>
-            <input
-                type="password"
-                placeholder="Secret Code"
-                class="input w-full max-w-xs"
-                name="secretcode" />
+            <div>
+                <label class="label my-4">
+                    <span class="label-text text-lg">Secret code</span>
+                </label>
+                <input
+                    type="password"
+                    placeholder="Type code here"
+                    class="input w-full max-w-xs rounded-lg"
+                    name="secretcode" />
+            </div>
             <% if (errors.length > 0) { %>
             <ul class="text-error">
                 <% errors.forEach(function(error) { %>
@@ -29,7 +32,7 @@
                 <% }); %>
             </ul>
             <% } %>
-            <button class="btn" type="submit">Submit</button>
+            <button class="btn bg-blue-600 btn-sm" type="submit">Submit</button>
         </form>
     </body>
 </html>

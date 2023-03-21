@@ -84,7 +84,7 @@ passport.use(
                         // passwords match! log user in
                         return done(null, user);
                     } else {
-                        // passwords do not match!
+                        //passwords do not match!
                         return done(null, false, {
                             message: "Incorrect password",
                         });
@@ -99,6 +99,7 @@ passport.use(
 exports.user_signin_post = passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/sign-in",
+    failureMessage: true,
 });
 
 passport.serializeUser(function (user, done) {

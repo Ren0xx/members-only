@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark">
+<html data-theme="winter">
     <head>
         <title><%= title %></title>
         <link rel="stylesheet" href="/stylesheets/style.css" />
@@ -10,8 +10,9 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     </head>
     <body class="h-screen flex flex-col gap-4 items-center justify-center">
+        <a href="/" class="absolute top-8 left-8 link">Go back</a>
         <form
-            class="form-control w-full max-w-xs gap-8 py-8 bg-neutral"
+            class="form-control w-full max-w-xs gap-8 py-8"
             method="POST"
             action="/sign-in">
             <div>
@@ -34,7 +35,10 @@
                     placeholder="Type your password"
                     class="input input-bordered w-full max-w-xs rounded-md" />
             </div>
-            <button class="btn btn-primary" type="submit">Sign in</button>
+            <button class="btn bg-blue-600 btn-sm" type="submit">
+                Sign in
+            </button>
+            <%= message %>
             <div>
                 <p>Don't have an account?</p>
                 - <a href="/sign-up" class="link">Sign up</a>
