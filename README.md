@@ -13,6 +13,7 @@ In this project, we build a web application where users can register, log in, an
 -   Install the dependencies using npm install.
 -   Set up your MongoDB database either locally or using a cloud service like MongoDB Atlas.
 -   Create a .env file in the root directory of the project and add the following environment variables:
+#### MONGO_URL_DEV, SECRET_CODE_ADMIN
 
 ## Technologies Used
 
